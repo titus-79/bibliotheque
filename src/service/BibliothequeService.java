@@ -97,18 +97,18 @@ public class BibliothequeService {
      public void emprunterLivre(String isbn, int idEmprunteur, int dureeJours) {
         Livre livre = livres.get(isbn);
         if (livre == null) {
-            System.out.println("X Livre non trouvé (ISBN: " + isbn + ")");
+            System.out.println("Livre non trouvé (ISBN: " + isbn + ")");
             return;
         }
         
         if (!livre.isDisponible()) {
-            System.out.println("X Ce livre est déjà emprunté !");
+            System.out.println("Ce livre est déjà emprunté !");
             return;
         }
         
         Emprunteur emprunteur = emprunteurs.get(idEmprunteur);
         if (emprunteur == null) {
-            System.out.println("X Emprunteur non trouvé (ID: " + idEmprunteur + ")");
+            System.out.println("Emprunteur non trouvé (ID: " + idEmprunteur + ")");
             return;
         }
 
@@ -127,7 +127,7 @@ public class BibliothequeService {
         Emprunt emprunt = emprunts.get(idEmprunt);
         
         if (emprunt == null) {
-            System.out.println("X Emprunt non trouvé (ID: " + idEmprunt + ")");
+            System.out.println("Emprunt non trouvé (ID: " + idEmprunt + ")");
             return;
         }
         
@@ -166,7 +166,7 @@ public class BibliothequeService {
             String retard = emprunt.estEnRetard() ? "EN RETARD" : "";
             System.out.println("- [" + emprunt.getId() + "] " 
                 + emprunt.getLivre().getTitre() 
-                + " → " + emprunt.getEmprunteur().getPrenom() + " " + emprunt.getEmprunteur().getNom()
+                + " : " + emprunt.getEmprunteur().getPrenom() + " " + emprunt.getEmprunteur().getNom()
                 + " (Retour: " + emprunt.getDateRetourPrevue() + ")" + retard);
         }
     }
