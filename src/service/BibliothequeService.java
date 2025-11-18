@@ -7,6 +7,7 @@ import java.util.List;
 import model.Emprunt;
 import model.Emprunteur;
 import model.Livre;
+import service.FichierService.DonneesBibliotheque;
 
 public class BibliothequeService {
     private HashMap<String, Livre> livres;
@@ -181,6 +182,19 @@ public class BibliothequeService {
         for (Emprunt emprunt : emprunts.values()) {
             System.out.println(emprunt);
         }
+    }
+
+    public void sauvegarderDonnees() {
+        FichierService.sauvegarder(livres, emprunteurs, emprunts, prochainIdEmprunteur, prochainIdEmprunt);
+    }
+
+    public void chargerDonnees() {
+        DonneesBibliotheque donnees = FichierService.charger();
+        this.livres = donnees.livres;
+        this.emprunteurs = donnees.emprunteurs;
+        this.emprunts = donnees.emprunts;
+        this.prochainIdEmprunteur = donnees.prochainIdEmprunteur;
+        this.prochainIdEmprunt = donnees.prochainIdEmprunt;
     }
 }
 
