@@ -12,8 +12,13 @@ public class Main {
         System.out.println("║   SYSTÈME DE GESTION DE BIBLIOTHÈQUE   ║");
         System.out.println("╚════════════════════════════════════════╝");
         
-        // Ajouter des données de test
-        initialiserDonneesTest();
+        System.out.println("\n[CHARGEMENT] Recuperation des donnees...");
+        boolean donneesChargees = bibliotheque.chargerDonnees();
+       
+        if (!donneesChargees) {
+            System.out.println("\n[INIT] Premier demarrage - Chargement du jeu de test...");
+            initialiserDonneesTest();
+        }
         
         boolean continuer = true;
         while (continuer) {
@@ -31,6 +36,8 @@ public class Main {
         System.out.println("1.  Gestion des livres");
         System.out.println("2.  Gestion des emprunteurs");
         System.out.println("3.  Gestion des emprunts");
+        System.out.println("8.  Reinitialiser avec jeu de test");
+        System.out.println("9.  Sauvegarder maintenant");
         System.out.println("0.  Quitter");
         System.out.print("Votre choix : ");
     }
@@ -55,7 +62,16 @@ public class Main {
             case 3:
                 menuEmprunts();
                 break;
+            case 8:
+                reinitialiserAvecTest();
+                break;
+            case 9:
+                System.out.println("\nEnregistrement des donnees...");
+                bibliotheque.sauvegarderDonnees();
+                break;
             case 0:
+                System.out.println("\nEnregistrement des donnees...");
+                bibliotheque.sauvegarderDonnees();
                 return false;
             default:
                 System.out.println("Choix invalide !");
@@ -249,6 +265,19 @@ public class Main {
         
         bibliotheque.retournerLivre(idEmprunt);
     }
+
+    private static void reinitialiserAvecTest() {
+    System.out.print("\nToutes les donnees seront effacees ! Confirmer (O/N) ? ");
+    String reponse = scanner.nextLine();
+    
+    if (reponse.equalsIgnoreCase("O") || reponse.equalsIgnoreCase("OUI")) {
+        bibliotheque = new BibliothequeService();
+        initialiserDonneesTest();
+        System.out.println("Donnees reinitialisees avec le jeu de test !");
+    } else {
+        System.out.println("Operation annulee.");
+    }
+}
 
     // ========== DONNÉES DE TEST ==========
     

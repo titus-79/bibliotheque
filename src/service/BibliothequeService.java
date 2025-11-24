@@ -188,13 +188,14 @@ public class BibliothequeService {
         FichierService.sauvegarder(livres, emprunteurs, emprunts, prochainIdEmprunteur, prochainIdEmprunt);
     }
 
-    public void chargerDonnees() {
+    public boolean chargerDonnees() {
         DonneesBibliotheque donnees = FichierService.charger();
         this.livres = donnees.livres;
         this.emprunteurs = donnees.emprunteurs;
         this.emprunts = donnees.emprunts;
         this.prochainIdEmprunteur = donnees.prochainIdEmprunteur;
         this.prochainIdEmprunt = donnees.prochainIdEmprunt;
+        return !livres.isEmpty() || !emprunteurs.isEmpty();
     }
 }
 
