@@ -78,7 +78,7 @@ java -cp bin Main
 
 Ou utilisez votre IDE pour exécuter `Main.java` directement.
 
-## 🚀 Utilisation
+## Utilisation
 
 ### Menu principal
 ```
